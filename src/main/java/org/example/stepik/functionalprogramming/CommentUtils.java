@@ -1,17 +1,11 @@
-package org.example.stepik;
+package org.example.stepik.functionalprogramming;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static java.util.Arrays.stream;
 
 public class CommentUtils {
     /**
@@ -70,3 +64,33 @@ public class CommentUtils {
         // write your code here
     }
 }
+
+
+
+
+class Comment {
+    private static final SimpleDateFormat TEXT_FORMAT = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+    private final Date created;
+    private final String text;
+
+    public Comment(Date created, String text) {
+        this.created = created;
+        this.text = text;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    @Override
+    public String toString() {
+        return "["+ TEXT_FORMAT.format(getCreated())+"] "+getText();
+    }
+}
+
+

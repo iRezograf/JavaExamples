@@ -1,8 +1,7 @@
-package org.example.stepik;
+package org.example.stepik.functionalprogramming;
 
 import java.util.*;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 class TaskManager {
     /**

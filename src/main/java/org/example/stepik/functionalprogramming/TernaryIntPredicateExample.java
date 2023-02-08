@@ -1,4 +1,4 @@
-package org.example.stepik;
+package org.example.stepik.functionalprogramming;
 
 
 
