@@ -1,4 +1,4 @@
-package org.example.stepik;
+package org.example.stepik.functionalprogramming;
 
 import java.util.ArrayList;
 import java.util.Arrays;
