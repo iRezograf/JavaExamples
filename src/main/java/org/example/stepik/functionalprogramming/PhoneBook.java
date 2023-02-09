@@ -37,6 +37,7 @@ public class PhoneBook {
         phoneBook.printPhoneBook();
     }
     public void addNewPhoneNumbers(String name, Collection<PhoneNumber> numbers) {
+
 //        nameToPhoneNumbersMap.computeIfAbsent(name, k -> new ArrayList<>()).addAll(numbers); /** не понимаю!!!, но работает !!! **/
         if (nameToPhoneNumbersMap.containsKey(name))
                 nameToPhoneNumbersMap.get(name).addAll(numbers);
