@@ -1,6 +1,7 @@
 package org.example.stepik.functionalprogramming;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class SortData {
@@ -29,18 +30,18 @@ public class SortData {
                 .forEach(System.out::println);
 
         System.out.println("----------- using comparingInt()  --------------");
+//        there's possible use to comparing(), but comparingInt:
+//        Comparator<Laptop> byNumberOfCores =
+//                Comparator.comparing(Laptop::getNumberOfCores);
         Comparator<Laptop> byNumberOfCores =
                 Comparator.comparingInt(Laptop::getNumberOfCores);
-        laptops.stream()
-                .sorted(byNumberOfCores)
-                .forEach(System.out::println);
+        laptops.sort(byNumberOfCores);
+        laptops.forEach(System.out::println);
 
         System.out.println("-------------- comparingInt.reversed() -----------");
-        byNumberOfCores =
-                Comparator.comparingInt(Laptop::getNumberOfCores).reversed(); //comparingInt
-        laptops.stream()
-                .sorted(byNumberOfCores)
-                .forEach(System.out::println);
+        byNumberOfCores = Comparator.comparingInt(Laptop::getNumberOfCores).reversed(); //comparingInt
+        laptops.sort(byNumberOfCores);
+        laptops.forEach(System.out::println);
 
         System.out.println("----------- using comparing(Brand)  --------------");
         Comparator<Laptop> byAnyField =
@@ -55,6 +56,31 @@ public class SortData {
         laptops.stream()
                 .sorted(byAnyField)
                 .forEach(System.out::println);
+
+
+        laptops.sort(Comparator.comparing(Laptop::getNumberOfCores, Comparator.reverseOrder())
+                .thenComparing(Laptop::getDisplaySize));
+        laptops.forEach(System.out::println);
+
+        System.out.println(" ----------- сортировка по длине слова ------------");
+        ArrayList<String> words = new ArrayList<>();
+        words.add("сублимация");
+        words.add("эхо");
+        words.add("время");
+        words.add("европарламентаризм");
+
+        words.sort(Comparator.comparingInt(String::length).reversed());
+        words.forEach(System.out::println);
+
+        System.out.println("------------сложная сортировка ---------------");
+        laptops.sort(Comparator.comparing(Laptop::getNumberOfCores, Comparator.reverseOrder())
+                .thenComparing(Laptop::getDisplaySize, Comparator.reverseOrder()));
+        laptops.forEach(System.out::println);
+
+        System.out.println("------------сложная сортировка ---------------");
+        laptops.sort(Comparator.comparing(Laptop::getNumberOfCores, Comparator.reverseOrder())
+                .thenComparing(Laptop::getDisplaySize, Comparator.reverseOrder()));
+        laptops.forEach(System.out::println);
     }
 
 
@@ -84,11 +110,8 @@ class Laptop {
 
     @Override
     public String toString() {
-        return "Laptop{" +
-                "brand='" + brand + '\'' +
-                ", numberOfCores=" + numberOfCores +
-                ", displaySize=" + displaySize +
-                '}';
+        //  очень хороший форматированный вывод
+        return String.format("Laptop{ brand = %15s numberOfCores= %s displaySize= %s", "'"+brand+"'",numberOfCores,displaySize);
     }
 
     // constructor, getters and toString
