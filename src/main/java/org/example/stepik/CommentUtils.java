@@ -18,7 +18,7 @@ public class CommentUtils {
      * An example string that fits the format "15-03-2020 10:20:34".
      * Use it to print the comments.
      */
-    private static final SimpleDateFormat TEXT_FORMATTER = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    public static final SimpleDateFormat TEXT_FORMATTER = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     public static void main(String[] args) throws ParseException {
         List<Comment> comments = new ArrayList<>();
 
