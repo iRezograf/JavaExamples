@@ -8,6 +8,13 @@ enum PhoneNumberType {
 
 public class PhoneBook {
 
+    @Override
+    public String toString() {
+        return "PhoneBook{" +
+                "nameToPhoneNumbersMap=" + nameToPhoneNumbersMap +
+                '}';
+    }
+
     private final Map<String, Collection<PhoneNumber>> nameToPhoneNumbersMap = new HashMap<>();
 
     public static void main(String[] args) {
@@ -22,52 +29,55 @@ public class PhoneBook {
         phoneBook.addNewPhoneNumbers("Kevin", kevinPhoneNumbers);
 
         phoneBook.addNewPhoneNumbers("Clara", List.of(new PhoneNumber(PhoneNumberType.MOBILE, "23424279")));
+        phoneBook.addNewPhoneNumbers("Clara", List.of(new PhoneNumber(PhoneNumberType.MOBILE, "00000002")));
         phoneBook.addNewPhoneNumbers("Paul", List.of(new PhoneNumber(PhoneNumberType.WORK, "56756335")));
 
+//        phoneBook.nameToPhoneNumbersMap.entrySet().forEach(System.out::println);
+//        System.out.println(phoneBook.nameToPhoneNumbersMap);
         phoneBook.printPhoneBook();
     }
     public void addNewPhoneNumbers(String name, Collection<PhoneNumber> numbers) {
-        nameToPhoneNumbersMap.put(name, numbers);
-        numbers.stream()
-//                .filter(n->n.equals(name))
-                .forEach(System.out::println);
-        // write your code here
+//        nameToPhoneNumbersMap.computeIfAbsent(name, k -> new ArrayList<>()).addAll(numbers); /** не понимаю!!!, но работает !!! **/
+        if (nameToPhoneNumbersMap.containsKey(name))
+                nameToPhoneNumbersMap.get(name).addAll(numbers);
+        else{
+            nameToPhoneNumbersMap.put(name, numbers);
+        }
+    }
+    public void printPhoneBook() {
+        nameToPhoneNumbersMap.entrySet().forEach(entry-> {
+            System.out.println(entry.getKey());
+            entry.getValue().forEach(System.out::println);});
+    }
+/**
+ *  public void addNewPhoneNumbers(String name, Collection<PhoneNumber> numbers) {
+        nameToPhoneNumbersMap.computeIfAbsent(name, k -> new ArrayList<>()).addAll(numbers);
     }
 
     public void printPhoneBook() {
-        nameToPhoneNumbersMap.keySet().forEach(System.out::println);
-        System.out.println("----");
-        nameToPhoneNumbersMap.entrySet().forEach(entry-> System.out.println(entry.getKey() +  "\n" + entry.getValue()));
-        System.out.println("----");
-        nameToPhoneNumbersMap.forEach((key,value)-> {
-   
-            System.out.println(key);
-            value.forEach(System.out::println);
+        nameToPhoneNumbersMap.forEach((k, v) -> {
+            System.out.println(k);
+            v.forEach(e -> System.out.println(e.getType() + ": " + e.getNumber()));
         });
-        // write your code here
     }
+ */
 }
 
 class PhoneNumber {
-
     private PhoneNumberType type;
     private String number;
-
     public PhoneNumber(PhoneNumberType type, String number) {
         this.type = type;
         this.number = number;
     }
-
     public PhoneNumberType getType() {
         return type;
     }
-
     public String getNumber() {
         return number;
     }
-
     @Override
     public String toString() {
-        return type + ":" + number + '\n';
+        return type + ": " + number;
     }
 }
