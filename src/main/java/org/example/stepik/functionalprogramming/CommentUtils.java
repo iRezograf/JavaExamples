@@ -44,7 +44,7 @@ public class CommentUtils {
      */
     public static void handleComments(List<Comment> comments, Date thresholdDate, int maxTextLength) {
         comments.removeIf(comment->comment.getCreated().before(thresholdDate));
-        // поскольку поле Comment.text финализировано, то зменить модно только
+        // поскольку поле Comment.text финализировано, то заменить можно только
 //        создав новый экземпляр  коммента с исправленной длиной
         comments.replaceAll(comment -> new Comment(comment.getCreated(),
                 comment.getText().substring(0, Math.min(comment.getText().length(), maxTextLength))));

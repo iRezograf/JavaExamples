@@ -50,18 +50,7 @@ public class PhoneBook {
             System.out.println(entry.getKey());
             entry.getValue().forEach(System.out::println);});
     }
-/**
- *  public void addNewPhoneNumbers(String name, Collection<PhoneNumber> numbers) {
-        nameToPhoneNumbersMap.computeIfAbsent(name, k -> new ArrayList<>()).addAll(numbers);
-    }
 
-    public void printPhoneBook() {
-        nameToPhoneNumbersMap.forEach((k, v) -> {
-            System.out.println(k);
-            v.forEach(e -> System.out.println(e.getType() + ": " + e.getNumber()));
-        });
-    }
- */
 }
 
 class PhoneNumber {
