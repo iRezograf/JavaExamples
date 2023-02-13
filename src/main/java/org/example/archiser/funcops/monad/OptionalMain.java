@@ -7,9 +7,11 @@ import java.util.function.Function;
 public class OptionalMain {
 
     public static void main(String[] args) {
-        Client client = new Client("Harry Carter", 15, true);
+//        Client client = new Client("Harry Carter", 15, true);
+        String client = "Harry Carter";
+//        String client = null;
         Optional.from(client)
-                .map(Client::getName)
+                //.map(Client::getName)
                 .map(s -> s.split(" "))
                 .map(c -> {
                     System.out.println(c[0]);
