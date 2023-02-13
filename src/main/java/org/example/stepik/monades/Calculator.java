@@ -1,5 +1,8 @@
 package org.example.stepik.monades;
 
+import org.example.stepik.functionalprogramming.SortData;
+
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -30,6 +33,7 @@ class Calculator<T extends Number> {
     }
 
     public static void main(String[] args) {
+
         Calculator.of(10) // inits calculator with the default value 10
                 .consume(System.out::println)  // shows the current value 10
                 .eval(value -> value * 10)     // evaluates a new expression: 100
