@@ -14,7 +14,11 @@ public class ListExample {
         Collections.sort(listA, (t1, t2) -> t2.compareTo(t1));
         listA.forEach(System.out::println);
 
-//        List<Integer> listB = List.of(100, 400, 200, 300); //ImmutableCollections не сортируется
+        List<Integer> listD = List.of(100, 400, 200, 300); //ImmutableCollections не сортируется
+//        Collections.sort(listD, (t1, t2) -> t2-t1);
+//        listD.stream().distinct().forEach(System.out::println);;
+        listD.forEach(System.out::println);
+
         List<Integer> listB = new ArrayList<>();
         listB.add(1);
         listB.add(2);
