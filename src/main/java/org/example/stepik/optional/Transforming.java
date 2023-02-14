@@ -17,20 +17,21 @@ public class Transforming {
         Robot robot = new Robot(new Engine("engine1"));
         Robot robot1 = new Robot(new Engine(null));
 
-        String name = robot.getEngine().get().getName();
+        String name = robot.getEngine().get().getName().get();
         System.out.println("name: "+name);
 
-        robot.getEngine().ifPresent(e-> System.out.println("e.getName().toUpperCase(): "+e.getName().toUpperCase()));
+        robot.getEngine().ifPresent(e-> System.out.println("e.getName().toUpperCase(): "+e.getName().get().toUpperCase()));
 
 
-        System.out.println(transforming.engineNameToUppercase(robot)); // Optional[ENGINE1]
-        System.out.println(transforming.engineNameToUppercase(robot).get()); //ENGINE1
+        System.out.println(transforming.engineNameToUppercase(robot1)); //  Optional.empty
+        System.out.println(transforming.engineNameToUppercase(robot));  //  Optional[ENGINE1]
 
         }
         private Optional<String> engineNameToUppercase(Robot robot){
             return Optional.ofNullable(robot)
                     .flatMap(Robot::getEngine) // returns Optional<Engine>, but pay attention .map(Robot::getEngine) - returns Optional<Optional<Engine>>
-                    .map(engine -> engine.getName().toUpperCase()); // compilation error
+                    .flatMap(Engine::getName)
+                    .map(n->n.toUpperCase());
     }
 }
 
@@ -41,8 +42,8 @@ class Engine {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
     }
 
     // a constructor and a getter
