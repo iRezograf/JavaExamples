@@ -1,9 +1,6 @@
-package org.example.stepik.monades;
+package org.example.stepik.optional;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
-
-import static java.util.Optional.*;
 
 
 class Rocket {
