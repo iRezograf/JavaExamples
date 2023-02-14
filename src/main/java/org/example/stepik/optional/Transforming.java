@@ -29,7 +29,7 @@ public class Transforming {
         }
         private Optional<String> engineNameToUppercase(Robot robot){
             return Optional.ofNullable(robot)
-                    .flatMap(Robot::getEngine) // returns Optional<Optional<Engine>>
+                    .flatMap(Robot::getEngine) // returns Optional<Engine>, but pay attention .map(Robot::getEngine) - returns Optional<Optional<Engine>>
                     .map(engine -> engine.getName().toUpperCase()); // compilation error
     }
 }
