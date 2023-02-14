@@ -1,13 +1,8 @@
 package org.example.stepik.optional;
 
-import org.example.archiser.funcops.Client;
-import org.example.stepik.collections.OptionalMain;
-
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-class FindUserQuiz {
+class FindUserOptional {
     public static void main(String[] args) {
 
         Set<User> usersSet = new HashSet<>();
@@ -15,7 +10,7 @@ class FindUserQuiz {
         usersSet.add(new User("user2", new Account("2")));
         usersSet.add(new User("user3", new Account("3")));
 
-        System.out.println( findUserByAccountId(usersSet, "0") );
+        System.out.println( findUserByAccountId(usersSet, "2") );
     }
 
     public static Optional<User> findUserByAccountId(Set<User> users, String id) {
@@ -28,10 +23,11 @@ class FindUserQuiz {
                 .findAny();
 
 
-//      мое решение
+/**
+// * мое решение
 //        return users.stream()
 //                .filter(u->u.getAccount().get().getId().equals(id)).findFirst();
-        // write your code here
+*/
     }
 }
 
