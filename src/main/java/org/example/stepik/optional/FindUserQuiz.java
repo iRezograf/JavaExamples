@@ -15,7 +15,7 @@ class FindUserQuiz {
         usersSet.add(new User("user2", new Account("2")));
         usersSet.add(new User("user3", new Account("3")));
 
-        System.out.println( findUserByAccountId(usersSet, "0") );
+        System.out.println( findUserByAccountId(usersSet, "3") );
     }
 
     public static Optional<User> findUserByAccountId(Set<User> users, String id) {
