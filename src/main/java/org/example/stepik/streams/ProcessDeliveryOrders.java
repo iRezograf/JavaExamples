@@ -10,27 +10,41 @@ import static java.util.Arrays.stream;
 class ProcessDeliveryOrders {
 
     public static DeliveryOrder findFirstOrder(List<DeliveryOrder> orders) {
-        List<DeliveryOrder> list = orders.stream()
-                .sorted(Comparator.comparing(DeliveryOrder::getDeliveryDate))
-                .limit(1)
-                .collect(Collectors.toList());
-
-        if (list.isEmpty())
-            return new DeliveryOrder();
-        else
-            return list.get(0);
+//        List<DeliveryOrder> list = orders.stream()
+//                .sorted(Comparator.comparing(DeliveryOrder::getDeliveryDate))
+//                .limit(1)
+//                .collect(Collectors.toList());
+//
+//        if (list.isEmpty())
+//            return new DeliveryOrder();
+//        else
+//            return list.get(0);
+        return orders.stream()
+                .min(DeliveryOrder.getComparatorByDeliveryDate())
+                .orElse(new DeliveryOrder());
     }
 
     public static void printAddressesToDeliver(List<DeliveryOrder> orders) {
                 orders.stream()
-                        .sorted(Comparator.comparing(DeliveryOrder::getDeliveryDate))
+                        .sorted(DeliveryOrder.getComparatorByDeliveryDate())
                         .distinct()
-                        .map(DeliveryOrder::getAddress)
-                        .forEach(System.out::println);
+                        .forEach(deliveryOrder-> System.out.println(deliveryOrder.getAddress()));
+//                        orders.stream()
+//                        .sorted(Comparator.comparing(DeliveryOrder::getDeliveryDate))
+//                        .distinct()
+//                        .map(DeliveryOrder::getAddress)
+//                        .forEach(System.out::println);
     }
 
     public static void main(String[] args) {
-//        final Scanner scanner = new Scanner(System.in);
+        /**
+3|2021-09-02|837 Bowman Street, Helena, MT 59601
+1|2021-09-02|837 Bowman Street, Helena, MT 59601
+2|2021-09-04|112 Mammoth Street, Colorado Springs, CO 80911
+4|2021-09-05|369 Woodside Court, Troy, NY 12180
+         **/
+//        System.out.println(LocalDate.parse("2021-09-02"));
+        final Scanner scanner = new Scanner(System.in);
 
 //        List<DeliveryOrder> orders = Stream.iterate(1, i -> scanner.hasNextLine(), i -> i + 1)
 //                .map(i -> scanner.nextLine().split("\\|"))
@@ -107,3 +121,9 @@ class DeliveryOrder {
         return orderId + "|" + deliveryDate + "|" + address;
     }
 }
+/**
+3|2021-09-02|837 Bowman Street, Helena, MT 59601
+1|2021-09-02|837 Bowman Street, Helena, MT 59601
+2|2021-09-04|112 Mammoth Street, Colorado Springs, CO 80911
+4|2021-09-05|369 Woodside Court, Troy, NY 12180
+**/
