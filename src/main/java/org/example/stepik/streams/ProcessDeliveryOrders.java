@@ -21,7 +21,8 @@ class ProcessDeliveryOrders {
 //            return list.get(0);
         return orders.stream()
                 .min(DeliveryOrder.getComparatorByDeliveryDate())
-                .orElse(new DeliveryOrder());
+//                .orElseGet(DeliveryOrder::new);
+                .orElse(new DeliveryOrder()); //или так
     }
 
     public static void printAddressesToDeliver(List<DeliveryOrder> orders) {
